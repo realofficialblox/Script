@@ -1,0 +1,38 @@
+getgenv().RecurringPoint = "UpperTorso"
+getgenv().Hitbox = "UpperTorso"
+getgenv().Keybind = "q" -- lock keybind
+getgenv().AimbotStrengthAmount = 0.200
+getgenv().PredictionAmount = 11
+getgenv().Radius = 25
+getgenv().UsePrediction = true
+getgenv().AimbotStrength = true
+getgenv().FirstPerson = true
+getgenv().ThirdPerson = true
+getgenv().TeamCheck = false
+getgenv().Enabled = truegetgenv().keytoclick = "Q"
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = keytoclick
+tool.Activated:connect(function()
+    local vim = game:service("VirtualInputManager")
+vim:SendKeyEvent(true, keytoclick, false, game)
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+game.StarterGui:SetCore("SendNotification", {
+    Title = "backupalt#3386 .gg/productions";
+    Text = "join .gg/productions";
+
+})
+
+local player = game.Players.LocalPlayer
+
+local function connectCharacterAdded()
+    player.CharacterAdded:Connect(onCharacterAdded)
+end
+
+connectCharacterAdded()
+
+player.CharacterRemoving:Connect(function()
+    tool.Parent = game.Players.LocalPlayer.Backpack
+end)
